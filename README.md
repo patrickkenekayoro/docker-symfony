@@ -100,12 +100,12 @@ container_elk           /usr/bin/supervisord -n -c ...   Up      0.0.0.0:5044->5
 
 Once all the containers are up, our services are available at:
 
-* Symfony app: `http://symfony.dev:80`
-* Mysql server: `symfony.dev:3306`
-* Redis: `symfony.dev:6379`
-* Elasticsearch: `symfony.dev:9200`
-* Kibana: `http://symfony.dev:5601`
-* RabbitMQ: `http://symfony.dev:15672`
+* Symfony app: `http://symfony-dev.com:80`
+* Mysql server: `symfony-dev.com:3306`
+* Redis: `symfony-dev.com:6379`
+* Elasticsearch: `symfony-dev.com:9200`
+* Kibana: `http://symfony-dev.com:5601`
+* RabbitMQ: `http://symfony-dev.com:15672`
 * Log files location: *logs/nginx* and *logs/symfony*
 
 ---

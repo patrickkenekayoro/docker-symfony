@@ -12,10 +12,14 @@ RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} >
 RUN printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini
 
 # Install extensions
-RUN docker-php-ext-install pdo pdo_mysql bcmath zip
+RUN docker-php-ext-install pdo pdo_mysql bcmath zip opcache
 
 # Install Redis extension
-RUN pecl install -o -f redis && rm -rf /tmp/pear && docker-php-ext-enable redis
+RUN pecl install -o -f redis  && rm -rf /tmp/pear && docker-php-ext-enable redis
+
+
+# Install apc extension
+RUN pecl install -o -f apcu  && rm -rf /tmp/pear && docker-php-ext-enable apcu
 
 # Install xdebug
 RUN pecl install xdebug
@@ -30,5 +34,6 @@ RUN echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-x
 
 # Create an alias for Symfony3 console
 RUN echo 'alias symfony="php bin/console"' >> ~/.bashrc
+ADD php.ini /usr/local/etc/php
 
 WORKDIR /var/www/symfony
